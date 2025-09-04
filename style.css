@@ -1,0 +1,55 @@
+:root{ --cfe:#006341; }
+*{ box-sizing:border-box; }
+html,body{ height:100%; margin:0; }
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--cfe);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.login-container,.menu-container{
+  width: 360px;
+  background:#fff;
+  color:var(--cfe);
+  padding:28px;
+  border-radius:16px;
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+  text-align:center;
+}
+.brand{
+  font-size:48px;
+  font-weight:900;
+  letter-spacing:2px;
+  margin-bottom:6px;
+}
+form{ display:flex; flex-direction:column; gap:8px; margin-top:10px; }
+label{ text-align:left; font-weight:700; }
+input{
+  padding:10px 12px;
+  border:1px solid var(--cfe);
+  border-radius:10px;
+  outline:none;
+}
+button{
+  margin-top:10px;
+  padding:12px 14px;
+  border:none;
+  border-radius:10px;
+  background:var(--cfe);
+  color:#fff;
+  font-weight:800;
+  cursor:pointer;
+}
+button:hover{ filter:brightness(.9); }
+
+.login-container img {
+  background-color: #006341;
+  max-width: 200px;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  margin: 0 auto 20px;
+  padding: 10px;
+}
