@@ -20,7 +20,7 @@ body {
   align-items: center;
   height: 100vh;
   background: url("../Images/CFE Logo.png") no-repeat center center fixed;
-  background-size: 300px auto;
+  background-size: 'cover';
   position: relative;
 }
 

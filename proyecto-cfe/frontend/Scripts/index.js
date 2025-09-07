@@ -1,16 +1,32 @@
 $(document).ready(function() {
 
-  $('#loginForm').on('submit', function(e) {
-    e.preventDefault();
+    $('#loginForm').on('submit', function(e) {
+        e.preventDefault();
 
-    const usuario = $('#usuario').val().trim();
-    const password = $('#contrasena').val().trim();
+        let correo = $('#usuario').val().trim();
+        let password = $('#contrasena').val().trim();
 
-    if(usuario && password){
-      window.location.href = "menu.html"; 
-    } else {
-      alert("Por favor rellena todos los campos.");
-    }
-  });
+        if(correo === '' || password === ''){
+            alert('Por favor rellena todos los datos.');
+            return;
+        }
+
+        $.ajax({
+            url: '../backend/login.php',
+            type: 'POST',
+            dataType: 'json',
+            data: { email: correo, password: password },
+            success: function(response) {
+                if(response.Result == 1){
+                    window.location.href = "menu.html";
+                } else {
+                    alert(response.Message);
+                }
+            },
+            error: function() {
+                alert('Error en la conexión con el servidor.');
+            }
+        });
+    });
 
 });
