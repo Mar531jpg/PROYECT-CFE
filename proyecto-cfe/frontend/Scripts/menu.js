@@ -1,6 +1,6 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
-  $('#formTiempoExtra').on('submit', function(e) {
+  $('#formTiempoExtra').on('submit', function (e) {
     e.preventDefault();
 
     const datos = {
@@ -9,15 +9,13 @@ $(document).ready(function() {
       fecha: $('#fecha').val()
     };
 
-    $.ajax({
-      url: "http://localhost:8080/generar-pdf",
-      type: "POST",
-      contentType: "application/json",
-      data: JSON.stringify(datos),
-      xhrFields: {
-        responseType: 'blob' 
-      },
-      success: function(blob) {
+    fetch("../backend/generar_pdf.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(datos)
+    })
+      .then(res => res.blob())
+      .then(blob => {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
@@ -26,14 +24,12 @@ $(document).ready(function() {
         a.click();
         a.remove();
         window.URL.revokeObjectURL(url);
-      },
-      error: function(error) {
-        alert("No se pudo generar el PDF: " + error);
-      }
-    });
+      })
+      .catch(() => alert("No se pudo generar el PDF"));
+
   });
 
-  $('#btnRegresar').on('click', function() {
+  $('#btnRegresar').on('click', function () {
     window.location.href = "index.html";
   });
 
